@@ -10,7 +10,7 @@ public class MoviesController(AppDbContext context) : Controller
     // GET
     public async Task<IActionResult> Index()
     {
-        var allMovies = await _context.Cinemas.ToListAsync();
-        return View();
+        var allMovies = await _context.Movies.ToListAsync();
+        return View(allMovies);
     }
 }
