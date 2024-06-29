@@ -1,6 +1,6 @@
 # Compiled output
-eTickets/bin/
-eTickets/obj/
+eTickets/bin
+eTickets/obj
 *.swp
 *.swo
 
