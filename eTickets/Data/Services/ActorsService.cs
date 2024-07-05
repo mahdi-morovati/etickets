@@ -18,7 +18,8 @@ public class ActorsService(AppDbContext context) : IActorsService
 
     public void Add(Actor actor)
     {
-        throw new NotImplementedException();
+        context.Actors.Add(actor);
+        context.SaveChanges();
     }
 
     public Actor Update(int id, Actor newActor)
