@@ -15,7 +15,7 @@ public class ActorsController(IActorsService  service) : Controller
 
     
     /// <summary>
-    /// Display Create Actor vierw
+    /// Display Create Actor view
     /// </summary>
     /// <returns>Redirect to Actoes list</returns>
     [Route("Actors/Create")]
@@ -42,9 +42,36 @@ public class ActorsController(IActorsService  service) : Controller
         var actorDetails = await service.GetByIdAsync(id);
         if (actorDetails == null)
         {
-            return View("Empty");
+            return View("NotFound");
         }
 
         return View(actorDetails);
     }
+    
+    /// <summary>
+    /// Display Edit Actor view
+    /// </summary>
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var actorDetails = await service.GetByIdAsync(id);
+        if (actorDetails == null)
+        {
+            return View("NotFound");
+        }
+
+        return View(actorDetails);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,ProfilePictureUrl,Bio")]Actor actor)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(actor);
+        }
+        await service.UpdateAsync(id, actor);
+        return RedirectToAction(nameof(Index));
+    }
+    
 }

@@ -23,9 +23,11 @@ public class ActorsService(AppDbContext context) : IActorsService
         await context.SaveChangesAsync();
     }
 
-    public Actor Update(int id, Actor newActor)
+    public async Task<Actor> UpdateAsync(int id, Actor newActor)
     {
-        throw new NotImplementedException();
+        context.Update(newActor);
+        await context.SaveChangesAsync();
+        return newActor;
     }
 
     public void Delete(int id)
