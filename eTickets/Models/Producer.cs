@@ -9,4 +9,7 @@ public class Producer
     public string ProfilePictureUrl { get; set; }
     public string FullName { get; set; }
     public string Bio { get; set; }
+    
+    // RelationShips
+    public List<Movie> Movies { get; set; }
 }

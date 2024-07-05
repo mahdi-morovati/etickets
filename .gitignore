@@ -1,1 +1,29 @@
-.idea
+# Compiled output
+eTickets/bin
+eTickets/obj
+*.swp
+*.swo
+
+# Dependencies
+node_modules/
+packages/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Other
+*.log
+*.cache.idea
