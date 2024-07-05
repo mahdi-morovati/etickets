@@ -5,21 +5,22 @@ namespace eTickets.Data.Services;
 
 public class ActorsService(AppDbContext context) : IActorsService
 {
-    public async Task<IEnumerable<Actor>> GetAll()
+    public async Task<IEnumerable<Actor>> GetAllAsync()
     {
         var result = await context.Actors.ToListAsync();
         return result;
     }
-
-    public Actor GetById(int id)
+    
+    public async Task<Actor> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var result = await context.Actors.FirstOrDefaultAsync(n => n.Id == id);
+        return result;
     }
 
-    public void Add(Actor actor)
+    public async Task AddAsync(Actor actor)
     {
-        context.Actors.Add(actor);
-        context.SaveChanges();
+        await context.Actors.AddAsync(actor);
+        await context.SaveChangesAsync();
     }
 
     public Actor Update(int id, Actor newActor)
