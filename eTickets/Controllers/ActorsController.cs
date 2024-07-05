@@ -33,7 +33,7 @@ public class ActorsController(IActorsService  service) : Controller
             return await Task.FromResult<IActionResult>(View(actor));
         }
         await service.AddAsync(actor);
-        return await Task.FromResult<IActionResult>(Redirect(nameof(Index)));
+        return RedirectToAction(nameof(Index));
     }
     
     // Get: Actors/Details/1
@@ -71,6 +71,33 @@ public class ActorsController(IActorsService  service) : Controller
             return View(actor);
         }
         await service.UpdateAsync(id, actor);
+        return RedirectToAction(nameof(Index));
+    }
+    
+    // Get: Actors/Delete/id
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var actorDetails = await service.GetByIdAsync(id);
+        if (actorDetails == null)
+        {
+            return View("NotFound");
+        }
+
+        return View(actorDetails);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var actorDetails = await service.GetByIdAsync(id);
+        if (actorDetails == null)
+        {
+            return View("NotFound");
+        }
+
+        await service.DeleteAsync(id);
+        
         return RedirectToAction(nameof(Index));
     }
     

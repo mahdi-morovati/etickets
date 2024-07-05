@@ -30,8 +30,10 @@ public class ActorsService(AppDbContext context) : IActorsService
         return newActor;
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var result = await context.Actors.FirstOrDefaultAsync(n => n.Id == id);
+        context.Actors.Remove(result);
+        await context.SaveChangesAsync();
     }
 }
