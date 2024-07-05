@@ -1,0 +1,66 @@
+@* Define model *@
+@model IEnumerable<Actor>
+
+@* Define ViewData *@
+@{
+// Layout = null;
+ViewData["Title"] = "List of Actors";
+}
+
+@* Write code *@
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table>
+            <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ProfilePictureUrl)</th>
+                <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                <th>@Html.DisplayNameFor(model => model.Bio)</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-middle">
+                        <img class="rounded-circle" src="@item.ProfilePictureUrl" alt="@item.FullName" style="max-width: 150px;"/>
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.Bio)
+                    </td>
+                    <td class="align-middle">
+                        <a href="" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</a> |
+                        <a href="" class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a> |
+                        <a href="" class="btn btn-danger text-white"><i class="bi bi-trash"></i>Delete</a> |
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@* <!DOCTYPE html> *@
+@* *@
+@* <html> *@
+@* <head> *@
+@*     <title>title</title> *@
+@* </head> *@
+@* <body> *@
+@* <div> *@
+@*     <br> *@
+@*     <br> *@
+@*     <br> *@
+@*     <h2> *@
+@*         Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci blanditiis cumque iure molestiae rerum, sed. A amet cupiditate debitis, enim eveniet fuga mollitia odit porro quaerat, quo, reiciendis velit. *@
+@*     </h2> *@
+@* </div> *@
+@* </body> *@
+@* </html> *@
